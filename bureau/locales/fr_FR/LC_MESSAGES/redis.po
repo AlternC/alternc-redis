@@ -1,0 +1,125 @@
+# french translation for Redis module
+# Copyright (C) 2024 AlternC Team
+# This file is distributed under the same license as the AlternC package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: AlternC 2.0\n"
+"Report-Msgid-Bugs-To: i18n@alternc.org\n"
+"POT-Creation-Date: 2024-03-05 19:17+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: FR <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../admin/menu_redis.php:33 ../class/m_redis.php:173
+msgid "Redis Server"
+msgstr "Serveur Redis"
+
+#: ../admin/redis.php:39 ../admin/redis_add.php:36 ../class/m_redis.php:204
+msgid "Redis server"
+msgstr "Serveur Redis"
+
+#: ../admin/redis.php:48
+msgid "Redis server status"
+msgstr "Etat du serveur Redis"
+
+#: ../admin/redis.php:48
+msgid "redis_status_"
+msgstr ""
+
+#: ../admin/redis.php:49
+msgid "Redis Socket Path"
+msgstr "Chemin du Socket Unix du serveur Redis"
+
+#: ../admin/redis.php:50 ../admin/redis_add.php:46
+msgid "Max Memory (in MB)"
+msgstr "Mémoire Max (en Mo)"
+
+#: ../admin/redis.php:51
+msgid "Data Saved?"
+msgstr "Sauver les données ?"
+
+#: ../admin/redis.php:51 ../admin/redis_add.php:52
+msgid "redis_save_"
+msgstr ""
+
+#: ../admin/redis.php:59
+msgid "Shutdown and delete"
+msgstr "Éteindre et supprimer"
+
+#: ../admin/redis.php:61
+msgid "Cancel deletion"
+msgstr "Annuler la suppression"
+
+#: ../admin/redis_add.php:42
+msgid ""
+"Enter the settings for your Redis server. You'll get the socket path in "
+"return."
+msgstr "Entrez les paramètres de votre serveur Redis. Vous obtiendrez le chemin du Socket Unix en retour."
+
+#: ../admin/redis_add.php:46
+#, php-format
+msgid "(max allowed %s MB)"
+msgstr "(maximum autorisé %s Mo)"
+
+#: ../admin/redis_add.php:47
+msgid "Save data on disk?"
+msgstr "Sauver les données sur le disque ? "
+
+#: ../admin/redis_add.php:58
+msgid "Start a Redis server"
+msgstr "Démarrer le serveur Redis"
+
+#: ../admin/redis_doadd.php:41
+msgid "Max Memory must be between 16MB and your maximum allowed. "
+msgstr "La mémoire maximale doit être comprise entre 16Mo et votre quota maximum."
+
+#: ../admin/redis_doadd.php:52
+msgid "I was not able to create your redis server now. Please try later"
+msgstr "Je n'ai pas pu créer le serveur Redis pour l'instant. Merci de réessayer"
+
+#: ../class/m_redis.php:34
+msgid "Redis service"
+msgstr "Service Redis"
+
+#: ../class/m_redis.php:45
+msgid "redis_status_CREATE"
+msgstr "Création en cours"
+
+#: ../class/m_redis.php:45
+msgid "redis_status_DELETE"
+msgstr "Effacement prochain"
+
+#: ../class/m_redis.php:45
+msgid "redis_status_DELETING"
+msgstr "Effacement en cours"
+
+#: ../class/m_redis.php:45
+msgid "redis_status_OK"
+msgstr "En fonctionnement"
+
+#: ../class/m_redis.php:46
+msgid "redis_save_0"
+msgstr "Aucune sauvegarde sur disque"
+
+#: ../class/m_redis.php:46
+msgid "redis_save_1"
+msgstr "Sauvegarde sur disque 1 fois par heure"
+
+#: ../class/m_redis.php:46
+msgid "redis_save_2"
+msgstr "Sauvegarde sur disque toutes les 10 minutes"
+
+#: ../class/m_redis.php:76
+msgid "A redis server already exist for your AlternC account"
+msgstr "Un serveur redis existe déjà pour votre compte AlternC"
+
+#: ../class/m_redis.php:99 ../class/m_redis.php:119
+msgid "No redis server exists for your AlternC account"
+msgstr "Aucun serveur redis n'existe pour votre compte AlternC"
+

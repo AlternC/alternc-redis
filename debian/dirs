@@ -1,0 +1,12 @@
+etc/alternc/templates/
+etc/redis-sock
+lib/systemd/system
+usr/lib/alternc/install.d
+usr/share/alternc/install
+usr/share/alternc/panel/admin
+usr/share/alternc/panel/class
+usr/share/alternc/panel/locales/en_US/LC_MESSAGES
+usr/share/alternc/panel/locales/fr_FR/LC_MESSAGES
+usr/share/doc/alternc-redis
+var/lib/alternc/backups
+var/lib/redis-sock

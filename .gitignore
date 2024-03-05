@@ -1,0 +1,8 @@
+debian/.debhelper
+debian/debhelper-build-stamp
+debian/alternc-redis
+debian/alternc-redis.debhelper.log
+debian/alternc-redis.postrm.debhelper
+debian/alternc-redis.substvars
+debian/files
+bureau/locales/*/LC_MESSAGES/redis.po~

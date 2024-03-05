@@ -1,0 +1,24 @@
+Source: alternc-redis
+Section: admin
+Priority: optional
+Maintainer: Benjamin Sonntag <benjamin@octopuce.fr>
+Build-Depends: debhelper (>= 11), po-debconf
+Standards-Version: 4.5.1
+
+Package: alternc-redis
+Priority: optional
+Section: admin
+Architecture: all
+Depends: redis-server, php-cli, systemd
+ alternc (>> 3.2.10),
+ ${misc:Depends}
+Description: Redis module for AlternC
+ AlternC is a mutualized hosting software manager for Linux.
+ It allows you to manage your websites, domains, ftp, emails, aliases,
+ web statistics, mailing-lists, etc.
+ .
+ This package is an optional module that adds redis-server management
+ to the virtual desktop. Any user having a redis quota above 0 can then
+ ask for the laucnh of its own secured redis-server using Unix Socket.
+ .
+ More information on https://www.alternc.com/
