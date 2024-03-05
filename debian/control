@@ -9,7 +9,7 @@ Package: alternc-redis
 Priority: optional
 Section: admin
 Architecture: all
-Depends: redis-server, php-cli, systemd
+Depends: redis-server, php-cli, systemd,
  alternc (>> 3.2.10),
  ${misc:Depends}
 Description: Redis module for AlternC
