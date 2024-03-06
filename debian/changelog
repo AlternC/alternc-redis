@@ -1,4 +1,4 @@
-alternc-redis (0.1.1) stable; urgency=low
+alternc-redis (0.1.1) buster bullseye bookworm; urgency=low
 
   * Initial release
 

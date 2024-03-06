@@ -9,6 +9,7 @@ We don't use the /lib/systemd/system/redis-server@.service provided by debian si
 
 The only parameters in Redis we currently manage are the max_memory in MB (the max memory can't be greater than the quota) and the save or not save setting: if save is 0 (the default), the data in this redis are never saved to disk. If save is 1, the data are saved once every hour if any keys has changed. If save is 2, the data are saved once every 10min if any keys has changed. 
 
+![Screenshot of an example of alternc-redis](/screenshot.png)
 
 Installation
 ============
