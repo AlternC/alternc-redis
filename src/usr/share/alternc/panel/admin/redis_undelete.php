@@ -23,35 +23,20 @@
  ----------------------------------------------------------------------
 */
 
-/**
- * Validate and create the redis server
- * 
- * @copyright AlternC-Team 2024 https://alternc.com/
- */
-
 require_once("../class/config.php");
+include_once("head.php");
 
-$fields = array (
-	"maxmemory"    		=> array ("post", "integer", 16),
-	"save"    		=> array ("post", "integer", 0),
-);
-getFields($fields);
-$redisquota=$quota->getquota("redis");
-
-if ($maxmemory < 16 || $maxmemory > $redisquota) {
-	$msg->raise("ERROR", "redis", _("Max Memory must be between 16MB and your maximum allowed. "));
-	include("redis_add.php");
-	exit();
+if (!$redis->get_server()) {
+    require_once("main.php");
+    exit();
 }
 
-// Attemp to create, exit if fail
-if ($redis->create($maxmemory,$save)) {
+// Attemp to delete, exit if fail
+if ($redis->undelete()) {
 	include ("redis.php");
 	exit;
 }
 
-$msg->raise("ERROR", "redis", _("I was not able to create your redis server now. Please try later"));
+$msg->raise("ERROR", "redis", _("I was not able to cancel the deletion of your redis server now. It may be too late."));
 
 include("main.php");
-
-

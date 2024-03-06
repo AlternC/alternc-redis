@@ -31,6 +31,8 @@ if($r=$redis->get_server() || !$quota->cancreate("redis")) {
     exit();
 }
 
+$redisquota=$quota->getquota("redis")["t"];
+
 ?>
 
     <h2><?php __("Redis server"); ?></h2>
@@ -39,11 +41,13 @@ if($r=$redis->get_server() || !$quota->cancreate("redis")) {
  <?php 
     echo $msg->msg_html_all();
 ?>
+        <p><?php __("You currently have no Redis server running."); ?></p>
         <p><?php __("Enter the settings for your Redis server. You'll get the socket path in return."); ?></p>
 
-            <form method="POST" action="redis_doadd.php">       
-<table class="tlist">
-     <tr><th><?php __("Max Memory (in MB)"); ?></th><td class="lst1">	<input type="text" class="int" name="maxmemory" id="maxmemory" size="8" maxlength="8" value="<?php echo $quota->getquota("redis"); ?>" /> <small><?php sprintf(_("(max allowed %s MB)"),$quota->getquota("redis")); ?></small> </td></tr>
+            <form method="POST" action="redis_doadd.php">
+  <?php csrf_get(); ?>           
+<table class="tedit">
+     <tr><th><?php __("Max Memory (in MB)"); ?></th><td class="lst1">	<input type="text" class="int" name="maxmemory" id="maxmemory" size="8" maxlength="8" value="<?php echo $redisquota; ?>" /> <small><?php sprintf(_("(max allowed %s MB)"),$redisquota); ?></small> </td></tr>
 <tr><th><?php __("Save data on disk?"); ?></th><td class="lst2">
      <select name="save" id="save" class="int">
      <?php
@@ -60,7 +64,7 @@ if($r=$redis->get_server() || !$quota->cancreate("redis")) {
 </table>
 </form>
 <?php
-                                                                                                             }
+     
 include_once("foot.php");
 
 

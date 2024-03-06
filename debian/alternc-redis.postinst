@@ -12,6 +12,16 @@ case "$1" in
     # Create default quota "sympa" with value 0
     mysql --defaults-file=/etc/alternc/my.cnf -Bse "INSERT IGNORE INTO defquotas (quota,value,type) VALUES ('redis', 0, 'default')" || true
 
+    # recompile translation files
+    find /usr/share/alternc/panel/locales -maxdepth 1 -mindepth 1 -type d -name "*_*" | while read A
+    do 
+        B="$A/LC_MESSAGES"
+        cd $B
+        rm -f alternc.mo alternc.po
+        msgcat --use-first *.po alternc >alternc.po
+        msgfmt alternc.po -o alternc.mo
+    done
+
     echo -e "\033[31m**********************************************"
     echo "*                                            *"
     echo "*   ALTERNC-REDIS ACTION REQUESTED           *"

@@ -42,7 +42,7 @@ class m_redis {
 
     /* this function is used to give gettext hints of strings that are dynamically used and need translation :) */
     private function _dynamic_translation() {
-        [_("redis_status_OK"), _("redis_status_DELETE"), _("redis_status_DELETING"), _("redis_status_CREATE"), _("redis_status_REGENERATE")];
+        [_("redis_status_OK"), _("redis_status_DELETE"), _("redis_status_DELETING"), _("redis_status_CREATE"), _("redis_status_ERROR")];
         [_("redis_save_0"), _("redis_save_1"), _("redis_save_2")];
     }
 
@@ -52,11 +52,11 @@ class m_redis {
      * @return array a hash with all information, or false if no server exists
      */
     function get_server() {
-        global $db,$cuid,$me;
+        global $db,$cuid,$mem;
         $db->query("SELECT * FROM redis WHERE uid='$cuid';");
         if (!$db->next_record()) return false;
         $r=$db->Record;
-        $r["path"]="/run/redis-sock/".$me["login"].".sock";
+        $r["path"]="/run/redis-sock/".$mem->user['login'].".sock";
         return $r;
     }
 
@@ -100,7 +100,8 @@ class m_redis {
             return false;
         }
         
-        $db->query("UPDATE redis SET redis_action='DELETE' WHERE uid=$cuid AND redis_action IN ('OK','CREATE');");
+        $db->query("UPDATE redis SET redis_action='DELETE' WHERE uid=$cuid AND redis_action IN ('OK','CREATE','ERROR');");
+        $msg->raise("INFO","redis",_("Your redis server has been marked for deletion"));
         
         return true;
     }
@@ -160,9 +161,9 @@ class m_redis {
                                                     file_get_contents("/etc/alternc/redis-template.conf")
                                         )))
             );
-            syslog(LOG_INFO,"Creating Redis server in AlternC for user ".$one["uid"]);
+            syslog(LOG_INFO,"Creating Redis server in AlternC for user ".$one["login"]);
             $out=[];
-            exec("systemctl enable --now redis-sock@".$user."  2>&1",$out,$res);
+            exec("systemctl enable --now redis-sock@".$one["login"]."  2>&1",$out,$res);
             if ($res!=0) {
                 syslog(LOG_ERR,"Can't start redis server. Output was\n".implode("\n",$out));
                 $db->query("UPDATE redis SET redis_action='ERROR' WHERE id=".$one["id"]);
@@ -179,13 +180,13 @@ class m_redis {
             $delete[]=$db->Record;
         }
         foreach($delete as $one) {
-            syslog(LOG_INFO,"Creating Redis server in AlternC for user ".$one["login"]);
+            syslog(LOG_INFO,"Stopping Redis server in AlternC for user ".$one["login"]);
             $out=[];
-            exec("systemctl enable --now redis-sock@".$one["login"]."  2>&1",$out,$res);
+            exec("systemctl disable --now redis-sock@".$one["login"]."  2>&1",$out,$res);
             if ($res!=0) {
                 syslog(LOG_ERR,"Can't stop redis server. Output was\n".implode("\n",$out)); 
             } else {
-                syslog(LOG_INFO,"Redis instance for user ".$one["login"]." stopped"); 
+                syslog(LOG_INFO,"Redis instance for user ".$one["login"]." stopped\n".implode("\n",$out));
             }
             @unlink("/etc/redis-sock/".$one["login"].".conf");
             $db->query("DELETE FROM redis WHERE id=".$one["id"].";");
@@ -233,7 +234,7 @@ class m_redis {
         $q=Array("name"=>"redis", "description"=>_("Redis server"), "used"=>0);
         $db->query("SELECT SUM(maxmemory) AS cnt FROM redis WHERE uid='$cuid';");
         if ($db->next_record()) {
-            $q['used']=($db->f("cnt")!=0);
+            $q['used']=intval($db->f("cnt"));
         }
         return $q;
     }

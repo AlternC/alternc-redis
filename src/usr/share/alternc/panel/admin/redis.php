@@ -36,34 +36,40 @@ if(!$r=$redis->get_server()) {
   }
 } else {
 	?>
-<h2><?php __("Redis server"); ?></h2>
-<hr id="topbar"/>
-<br />
  <?php 
     echo $msg->msg_html_all();
     
 ?>
 
-<table class="tlist">
+<table class="tedit">
+        <tr>
+    <th colspan="2" style='text-align:center;'><?php echo '<h1>'._("Redis server settings").'</h1>'; ?></th>
+        </tr>
+
 <tr><th><?php __("Redis server status"); ?></th><td class="lst1"><?php __("redis_status_".$r["redis_action"]); ?></td></tr>
 <tr><th><?php __("Redis Socket Path"); ?></th><td class="lst2"><code><?php echo $r["path"]; ?></code></td></tr>
 <tr><th><?php __("Max Memory (in MB)"); ?></th><td class="lst1"><?php echo $r["maxmemory"]; ?></td></tr>
 <tr><th><?php __("Data Saved?"); ?></th><td class="lst2"><?php __("redis_save_".intval($r["save"])); ?></td></tr>
+
 </table>
 
-
+<p>
 <?php
 
-switch ( $r["redis_action"]) ) {
+switch ( $r["redis_action"]) {
     case "OK":
-        echo "<a class=\"ina\" href=\"redis_delete.php\">"._("Shutdown and delete")."</a>";
+    case "ERROR":
+        echo "<a class=\"ina\" onclick=\"return confirm('"._("Please confirm that you want your Redis server stopped and deleted")."')\" href=\"redis_delete.php\">"._("Shutdown and delete")."</a>";
+        break;
     case "DELETE":
         echo "<a class=\"ina\" href=\"redis_undelete.php\">"._("Cancel deletion")."</a>";
+        break;
 }
-
 ?>
-
+                                 </p>
 <?php
-                                                                                                             }
+
+    }
+
 include_once("foot.php");
 

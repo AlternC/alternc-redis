@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AlternC 2.0\n"
 "Report-Msgid-Bugs-To: i18n@alternc.org\n"
-"POT-Creation-Date: 2024-03-05 19:17+0100\n"
+"POT-Creation-Date: 2024-03-06 16:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: FR <LL@li.org>\n"
@@ -16,72 +16,100 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../admin/menu_redis.php:33 ../class/m_redis.php:173
+#: ../admin/menu_redis.php:33 ../class/m_redis.php:203
 msgid "Redis Server"
 msgstr "Serveur Redis"
 
-#: ../admin/redis.php:39 ../admin/redis_add.php:36 ../class/m_redis.php:204
-msgid "Redis server"
-msgstr "Serveur Redis"
+#: ../admin/redis.php:46
+msgid "Redis server settings"
+msgstr "Paramètres du serveur Redis"
 
-#: ../admin/redis.php:48
+#: ../admin/redis.php:49
 msgid "Redis server status"
 msgstr "Etat du serveur Redis"
 
-#: ../admin/redis.php:48
+#: ../admin/redis.php:49
 msgid "redis_status_"
 msgstr ""
 
-#: ../admin/redis.php:49
+#: ../admin/redis.php:50
 msgid "Redis Socket Path"
 msgstr "Chemin du Socket Unix du serveur Redis"
 
-#: ../admin/redis.php:50 ../admin/redis_add.php:46
+#: ../admin/redis.php:51 ../admin/redis_add.php:50
 msgid "Max Memory (in MB)"
 msgstr "Mémoire Max (en Mo)"
 
-#: ../admin/redis.php:51
+#: ../admin/redis.php:52
 msgid "Data Saved?"
 msgstr "Sauver les données ?"
 
-#: ../admin/redis.php:51 ../admin/redis_add.php:52
+#: ../admin/redis.php:52 ../admin/redis_add.php:56
 msgid "redis_save_"
 msgstr ""
 
-#: ../admin/redis.php:59
+#: ../admin/redis.php:62
+msgid "Please confirm that you want your Redis server stopped and deleted"
+msgstr "Merci de confirmer que vous souhaitez la suppression du serveur Redis"
+
+#: ../admin/redis.php:62
 msgid "Shutdown and delete"
 msgstr "Éteindre et supprimer"
 
-#: ../admin/redis.php:61
+#: ../admin/redis.php:65
 msgid "Cancel deletion"
 msgstr "Annuler la suppression"
 
-#: ../admin/redis_add.php:42
+#: ../admin/redis_add.php:38 ../class/m_redis.php:234
+msgid "Redis server"
+msgstr "Serveur Redis"
+
+#: ../admin/redis_add.php:44
+msgid "You currently have no Redis server running."
+msgstr "Vous n'avez pour l'instant aucun serveur Redis d'actif."
+
+#: ../admin/redis_add.php:45
 msgid ""
 "Enter the settings for your Redis server. You'll get the socket path in "
 "return."
-msgstr "Entrez les paramètres de votre serveur Redis. Vous obtiendrez le chemin du Socket Unix en retour."
+msgstr ""
+"Entrez les paramètres de votre serveur Redis. Vous obtiendrez le chemin du "
+"Socket Unix en retour."
 
-#: ../admin/redis_add.php:46
+#: ../admin/redis_add.php:50
 #, php-format
 msgid "(max allowed %s MB)"
 msgstr "(maximum autorisé %s Mo)"
 
-#: ../admin/redis_add.php:47
+#: ../admin/redis_add.php:51
 msgid "Save data on disk?"
 msgstr "Sauver les données sur le disque ? "
 
-#: ../admin/redis_add.php:58
+#: ../admin/redis_add.php:62
 msgid "Start a Redis server"
 msgstr "Démarrer le serveur Redis"
 
-#: ../admin/redis_doadd.php:41
-msgid "Max Memory must be between 16MB and your maximum allowed. "
-msgstr "La mémoire maximale doit être comprise entre 16Mo et votre quota maximum."
+#: ../admin/redis_delete.php:40
+msgid "I was not able to delete your redis server now. Please try later"
+msgstr ""
+"Je n'ai pas pu supprimer le serveur Redis pour l'instant. Merci de réessayer"
 
-#: ../admin/redis_doadd.php:52
+#: ../admin/redis_doadd.php:42
+msgid "Max Memory must be between 16MB and your maximum allowed. "
+msgstr ""
+"La mémoire maximale doit être comprise entre 16Mo et votre quota maximum."
+
+#: ../admin/redis_doadd.php:53
 msgid "I was not able to create your redis server now. Please try later"
-msgstr "Je n'ai pas pu créer le serveur Redis pour l'instant. Merci de réessayer"
+msgstr ""
+"Je n'ai pas pu créer le serveur Redis pour l'instant. Merci de réessayer"
+
+#: ../admin/redis_undelete.php:40
+msgid ""
+"I was not able to cancel the deletion of your redis server now. It may be "
+"too late."
+msgstr ""
+"Je n'ai pas pu annuler la suppression du serveur Redis pour l'instant. Il est peut-être trop tard."
 
 #: ../class/m_redis.php:34
 msgid "Redis service"
@@ -98,6 +126,10 @@ msgstr "Effacement prochain"
 #: ../class/m_redis.php:45
 msgid "redis_status_DELETING"
 msgstr "Effacement en cours"
+
+#: ../class/m_redis.php:45
+msgid "redis_status_ERROR"
+msgstr "En erreur"
 
 #: ../class/m_redis.php:45
 msgid "redis_status_OK"
@@ -119,7 +151,10 @@ msgstr "Sauvegarde sur disque toutes les 10 minutes"
 msgid "A redis server already exist for your AlternC account"
 msgstr "Un serveur redis existe déjà pour votre compte AlternC"
 
-#: ../class/m_redis.php:99 ../class/m_redis.php:119
+#: ../class/m_redis.php:99 ../class/m_redis.php:120
 msgid "No redis server exists for your AlternC account"
 msgstr "Aucun serveur redis n'existe pour votre compte AlternC"
 
+#: ../class/m_redis.php:104
+msgid "Your redis server has been marked for deletion"
+msgstr "Votre serveur redis a été marqué pour suppression"

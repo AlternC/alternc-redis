@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS `redis` (
   `uid` int(10) unsigned NOT NULL DEFAULT '0',
   `maxmemory` int(10) NOT NULL DEFAULT 128, -- maximum memory of this redis instance, in MB
   `save` int(10) NOT NULL DEFAULT 0, -- shall we save the data in this redis ? 0=no, 1=yes at least once every hour 2=yes at least once every 10min
-  `redis_action` enum('OK','CREATE','DELETE', 'DELETING', 'REGENERATE') NOT NULL DEFAULT 'CREATE',
+  `redis_action` enum('OK','ERROR','CREATE','DELETE', 'DELETING') NOT NULL DEFAULT 'CREATE',
   `redis_result` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `uid` (`uid`)

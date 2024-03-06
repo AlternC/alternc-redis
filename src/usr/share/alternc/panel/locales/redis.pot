@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AlternC 2.0\n"
 "Report-Msgid-Bugs-To: i18n@alternc.org\n"
-"POT-Creation-Date: 2024-03-05 19:17+0100\n"
+"POT-Creation-Date: 2024-03-06 16:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,234 +17,93 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../admin/menu_redis.php:33 ../class/m_redis.php:173
+#: ../admin/menu_redis.php:33 ../class/m_redis.php:203
 msgid "Redis Server"
 msgstr ""
 
-#: ../admin/redis.php:39 ../admin/redis_add.php:36 ../class/m_redis.php:204
-msgid "Redis server"
-msgstr ""
-
-#: ../admin/redis.php:48
-msgid "Redis server status"
-msgstr ""
-
-#: ../admin/redis.php:48
-msgid "redis_status_"
+#: ../admin/redis.php:46
+msgid "Redis server settings"
 msgstr ""
 
 #: ../admin/redis.php:49
+msgid "Redis server status"
+msgstr ""
+
+#: ../admin/redis.php:49
+msgid "redis_status_"
+msgstr ""
+
+#: ../admin/redis.php:50
 msgid "Redis Socket Path"
 msgstr ""
 
-#: ../admin/redis.php:50 ../admin/redis_add.php:46
+#: ../admin/redis.php:51 ../admin/redis_add.php:50
 msgid "Max Memory (in MB)"
 msgstr ""
 
-#: ../admin/redis.php:51
+#: ../admin/redis.php:52
 msgid "Data Saved?"
 msgstr ""
 
-#: ../admin/redis.php:51 ../admin/redis_add.php:52
+#: ../admin/redis.php:52 ../admin/redis_add.php:56
 msgid "redis_save_"
 msgstr ""
 
-#: ../admin/redis.php:59
+#: ../admin/redis.php:62
+msgid "Please confirm that you want your Redis server stopped and deleted"
+msgstr ""
+
+#: ../admin/redis.php:62
 msgid "Shutdown and delete"
 msgstr ""
 
-#: ../admin/redis.php:61
+#: ../admin/redis.php:65
 msgid "Cancel deletion"
 msgstr ""
 
-#: ../admin/redis_add.php:42
+#: ../admin/redis_add.php:38 ../class/m_redis.php:234
+msgid "Redis server"
+msgstr ""
+
+#: ../admin/redis_add.php:44
+msgid "You currently have no Redis server running."
+msgstr ""
+
+#: ../admin/redis_add.php:45
 msgid ""
 "Enter the settings for your Redis server. You'll get the socket path in "
 "return."
 msgstr ""
 
-#: ../admin/redis_add.php:46
+#: ../admin/redis_add.php:50
 #, php-format
 msgid "(max allowed %s MB)"
 msgstr ""
 
-#: ../admin/redis_add.php:47
+#: ../admin/redis_add.php:51
 msgid "Save data on disk?"
 msgstr ""
 
-#: ../admin/redis_add.php:58
+#: ../admin/redis_add.php:62
 msgid "Start a Redis server"
 msgstr ""
 
-#: ../admin/redis_doadd.php:41
+#: ../admin/redis_delete.php:40
+msgid "I was not able to delete your redis server now. Please try later"
+msgstr ""
+
+#: ../admin/redis_doadd.php:42
 msgid "Max Memory must be between 16MB and your maximum allowed. "
 msgstr ""
 
-#: ../admin/redis_doadd.php:52
+#: ../admin/redis_doadd.php:53
 msgid "I was not able to create your redis server now. Please try later"
 msgstr ""
 
-#: ../admin/sympa_robots.php:31
+#: ../admin/redis_undelete.php:40
 msgid ""
-"No domain is installed on your account, you cannot create any mailing list!"
-msgstr ""
-
-#: ../admin/sympa_robots.php:33 ../admin/sympa_robots.php:52
-msgid "Sympa Mailing lists"
-msgstr ""
-
-#: ../admin/sympa_robots.php:61
-msgid "Setup a domain for Sympa mailing-lists"
-msgstr ""
-
-#: ../admin/sympa_robots.php:69
-msgid "Actions"
-msgstr ""
-
-#: ../admin/sympa_robots.php:69
-msgid "Admin web interface"
-msgstr ""
-
-#: ../admin/sympa_robots.php:69 ../admin/sympa_robots_del.php:53
-msgid "Domain Name"
-msgstr ""
-
-#: ../admin/sympa_robots.php:69
-msgid "Domain Status"
-msgstr ""
-
-#: ../admin/sympa_robots.php:80
-msgid ""
-"This domain lists management is pending deletion, you can't do anything on it"
-msgstr ""
-
-#: ../admin/sympa_robots.php:82
-msgid "sympa_status_"
-msgstr ""
-
-#: ../admin/sympa_robots.php:83
-msgid "Delete"
-msgstr ""
-
-#: ../admin/sympa_robots.php:83
-msgid "Edit"
-msgstr ""
-
-#: ../admin/sympa_robots_add.php:37
-msgid ""
-"You currently have no unused domain for which you can host sympa robots."
-msgstr ""
-
-#: ../admin/sympa_robots_add.php:43
-msgid "Sympa Mailing-lists, setup of a domain name"
-msgstr ""
-
-#: ../admin/sympa_robots_add.php:49
-msgid ""
-"If you want to use a domain name to host Sympa mailing-lists, you need to "
-"setup that domain here first. You can use any domain whose emails are hosted "
-"on your account to host mailing lists. You will also need a subdomain to "
-"host your web interface for those lists (eg: lists.example.com)."
-msgstr ""
-
-#: ../admin/sympa_robots_add.php:56
-msgid "Which domain name will host the lists?"
-msgstr ""
-
-#: ../admin/sympa_robots_add.php:59
-msgid ""
-"Which subdomain will be used for web access to the Mailing-lists management "
-"interface?"
-msgstr ""
-
-#: ../admin/sympa_robots_add.php:60 ../admin/sympa_robots_edit.php:69
-msgid "lists"
-msgstr ""
-
-#: ../admin/sympa_robots_add.php:62 ../admin/sympa_robots_edit.php:71
-msgid "Email of the domain lists super-administrators (1 per line, 1 minimum)"
-msgstr ""
-
-#: ../admin/sympa_robots_add.php:66
-msgid "Setup that domain to host Sympa Mailing-lists."
-msgstr ""
-
-#: ../admin/sympa_robots_add.php:67 ../admin/sympa_robots_edit.php:76
-msgid "Cancel"
-msgstr ""
-
-#: ../admin/sympa_robots_del.php:37 ../admin/sympa_robots_edit.php:42
-msgid "Can't find the requested domain on your account!"
-msgstr ""
-
-#: ../admin/sympa_robots_del.php:43
-msgid "Deleting a Sympa Domain name"
-msgstr ""
-
-#: ../admin/sympa_robots_del.php:50
-msgid ""
-"Please confirm that you want to delete the following domain name for Sympa "
-"Mailing Lists."
-msgstr ""
-
-#: ../admin/sympa_robots_del.php:54
-msgid "Web Interface URL"
-msgstr ""
-
-#: ../admin/sympa_robots_del.php:60
-msgid "Yes, delete this domain mailing-lists from Sympa."
-msgstr ""
-
-#: ../admin/sympa_robots_del.php:61
-msgid "No, don't delete this domain's mailing-lists on Sympa."
-msgstr ""
-
-#: ../admin/sympa_robots_doadd.php:41
-msgid ""
-"The Sympa domain has been setup. Please wait a few minutes before accessing "
-"its web interface."
-msgstr ""
-
-#: ../admin/sympa_robots_doedit.php:49
-msgid ""
-"The Sympa domain has been changed. Please wait a few minutes for the changes "
-"to be applied."
-msgstr ""
-
-#: ../admin/sympa_robots_edit.php:51
-msgid "Sympa Mailing-lists, change the setup of a domain name"
-msgstr ""
-
-#: ../admin/sympa_robots_edit.php:57
-msgid ""
-"This form allows you to change the settings of a domain name for which you "
-"have Sympa mailing-list already setup."
-msgstr ""
-
-#: ../admin/sympa_robots_edit.php:65
-msgid "Domain name of the lists"
-msgstr ""
-
-#: ../admin/sympa_robots_edit.php:68
-msgid ""
-"If you change it, the old one will be set as a redirect to the new one."
-"<br>Changing it is not recommended though, once you published it for list "
-"owners or subscribers."
-msgstr ""
-
-#: ../admin/sympa_robots_edit.php:68
-msgid "Subdomain used for web access to the Mailing-lists management interface"
-msgstr ""
-
-#: ../admin/sympa_robots_edit.php:71
-msgid ""
-"You can change this list as you like. If you add someone whose email is not "
-"yet enrolled in the server, <br>this person can create an account via the "
-"web interface to access its listmasters privileges"
-msgstr ""
-
-#: ../admin/sympa_robots_edit.php:75
-msgid "Edit this domain's Sympa settings."
+"I was not able to cancel the deletion of your redis server now. It may be "
+"too late."
 msgstr ""
 
 #: ../class/m_redis.php:34
@@ -264,11 +123,11 @@ msgid "redis_status_DELETING"
 msgstr ""
 
 #: ../class/m_redis.php:45
-msgid "redis_status_OK"
+msgid "redis_status_ERROR"
 msgstr ""
 
 #: ../class/m_redis.php:45
-msgid "redis_status_REGENERATE"
+msgid "redis_status_OK"
 msgstr ""
 
 #: ../class/m_redis.php:46
@@ -287,6 +146,10 @@ msgstr ""
 msgid "A redis server already exist for your AlternC account"
 msgstr ""
 
-#: ../class/m_redis.php:99 ../class/m_redis.php:119
+#: ../class/m_redis.php:99 ../class/m_redis.php:120
 msgid "No redis server exists for your AlternC account"
+msgstr ""
+
+#: ../class/m_redis.php:104
+msgid "Your redis server has been marked for deletion"
 msgstr ""
