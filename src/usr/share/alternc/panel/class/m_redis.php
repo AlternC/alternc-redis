@@ -125,41 +125,70 @@ class m_redis {
         return true;
     }
 
+    private function save2conf($save) {
+        switch($save) {
+        case 0:
+            return 'save ""';
+        case 1:
+            return 'save 3600 1';
+        case 2:
+            return 'save 600 1';
+        }
+    }
 
     /* ----------------------------------------------------------------- */
     /** This function is launched by a crontab 
      * and is in charge of effectively create or delete the pending redis servers
      * MUST be launched as root of course
      */
-    private function cron_update() {
+    public function cron_update() {
         global $db;
         putenv("PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin");
 
-        $db->query("SELECT * FROM redis WHERE redis_action='CREATE';");
+        $db->query("SELECT r.id,r.maxmemory,r.save,r.uid,m.login FROM redis r, membres m WHERE m.uid=r.uid AND r.redis_action='CREATE';");
+        $create=[];
         while ($db->next_record()) {
-            syslog(LOG_INFO,"Creating Redis server in AlternC for user ".$db->Record["uid"]);
+            $create[]=$db->Record;
+        }
+        foreach($create as $one) {
+            // substitute the 3 variables in our redis template by their value : 
+            file_put_contents(
+                "/etc/redis-sock/".$one["login"].".conf",
+                str_replace("%%user%%",$one["login"],
+                            str_replace("%%maxmemory%%",$one["maxmemory"],
+                                        str_replace("%%save%%",$this->save2conf($one["save"]),
+                                                    file_get_contents("/etc/alternc/redis-template.conf")
+                                        )))
+            );
+            syslog(LOG_INFO,"Creating Redis server in AlternC for user ".$one["uid"]);
             $out=[];
             exec("systemctl enable --now redis-sock@".$user."  2>&1",$out,$res);
             if ($res!=0) {
                 syslog(LOG_ERR,"Can't start redis server. Output was\n".implode("\n",$out));
-                $db->query("UPDATE redis SET redis_action='ERROR' WHERE id=".$db->Record["id"]);
+                $db->query("UPDATE redis SET redis_action='ERROR' WHERE id=".$one["id"]);
             } else {
                 syslog(LOG_INFO,"Redis started");
-                $db->query("UPDATE redis SET redis_action='OK' WHERE id=".$db->Record["id"]);
+                $db->query("UPDATE redis SET redis_action='OK' WHERE id=".$one["id"]);
             }            
         }
 
-        $db->query("SELECT * FROM redis WHERE redis_action='DELETE';");
+        $db->query("UPDATE redis SET redis_action='DELETING' WHERE redis_action='DELETE';");
+        $db->query("SELECT r.id,r.uid,m.login FROM redis r, membres m WHERE m.uid=r.uid AND r.redis_action='DELETING';");
+        $delete=[];
         while ($db->next_record()) {
-            syslog(LOG_INFO,"Creating Redis server in AlternC for user ".$db->Record["uid"]);
+            $delete[]=$db->Record;
+        }
+        foreach($delete as $one) {
+            syslog(LOG_INFO,"Creating Redis server in AlternC for user ".$one["login"]);
             $out=[];
-            exec("systemctl enable --now redis-sock@".$user."  2>&1",$out,$res);
+            exec("systemctl enable --now redis-sock@".$one["login"]."  2>&1",$out,$res);
             if ($res!=0) {
-                syslog(LOG_ERR,"Can't start redis server. Output was\n".implode("\n",$out)); 
+                syslog(LOG_ERR,"Can't stop redis server. Output was\n".implode("\n",$out)); 
             } else {
-                syslog(LOG_INFO,"Redis started"); 
-            }            
-            $db->query("DELETE FROM redis WHERE id=".$db->Record["id"]);
+                syslog(LOG_INFO,"Redis instance for user ".$one["login"]." stopped"); 
+            }
+            @unlink("/etc/redis-sock/".$one["login"].".conf");
+            $db->query("DELETE FROM redis WHERE id=".$one["id"].";");
         }
         
     }

@@ -26,16 +26,13 @@ export VERSION
 build:
 
 install: 
-	cp -r bureau/* $(DESTDIR)/usr/share/alternc/panel/
+	cp -r src/* $(DESTDIR)/
 # 1999 is alterncpanel (TODO: ask Debian for a static uid/gid ?)
 	chown 1999:1999 -R $(DESTDIR)/usr/share/alternc/panel/
-# install system scripts:
-	install -m 0755 src/update_redis.sh \
-		$(DESTDIR)/usr/lib/alternc/
-	install -m 0644 redis.sql \
-		$(DESTDIR)/usr/share/alternc/install/
-	install -m 0755 redis-sock@.service $(DESTDIR)/lib/systemd/system/
-	install -m 750 alternc-redis-install $(DESTDIR)/usr/lib/alternc/install.d/
-
+# set proper permissions 
+	chmod 755 $(DESTDIR)/usr/lib/alternc/update_redis.sh
+	chmod 644 $(DESTDIR)/usr/share/alternc/install/redis.sql
+	chmod 755 $(DESTDIR)/lib/systemd/system/redis-sock@.service
+	chmod 755 $(DESTDIR)/usr/lib/alternc/install.d/alternc-redis-install
 	rm -f $(DESTDIR)/usr/share/alternc/panel/locales/Makefile
 
